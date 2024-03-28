@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Header } from "@/components/ui/Header";
 import { SideBar } from "@/components/ui/SideBar";
-import ConditionalLayout from "./conditionalLayout";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,12 +14,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ClerkProvider>
+    
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+          <SideBar />
+          <div className="flex flex-col">
+            <Header />
             {children}
-        </ClerkProvider>
-      </body>
-    </html>
+          </div>
+      </div>
+   
   );
 }
