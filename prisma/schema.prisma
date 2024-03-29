@@ -1,30 +1,46 @@
 // schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
-  directUrl = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require" 
+  provider  = "postgresql"
+  url       = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
+  directUrl = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+model Settings {
+  id           String   @id @default(cuid())
+  title        String
+  isActive     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastUpdateBy String?
+  slideOne     Json
+  slideTwo     Json
+  slideThree   Json
+  slideFour    Json
+  slideFive    Json
+  slideSix     Json
+  slideSeven   Json
+  slideEight   Json
 }
 
-model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-  @@map(name: "users")
+model Leads {
+  id               String   @id @default(cuid())
+  name             String
+  email            String
+  phone            String
+  company          String?
+  hasRequestedCall Boolean?
+  createdAt        DateTime @default(now())
+}
+
+model HelpRequests {
+  id        String   @id @default(cuid())
+  phone     String
+  name      String?
+  email     String?
+  message   String?
+  createdAt DateTime @default(now())
 }
