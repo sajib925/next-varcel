@@ -2,7 +2,6 @@
 
 import type { Setting } from '@prisma/client'
 import { db } from '@/prisma/db'
-import { notFound } from 'next/navigation'
 
 /*
 export async function fetchSettings(): Promise<Setting[] | null> {
@@ -24,10 +23,6 @@ export async function fetchSettingById(id: string): Promise<Setting | null> {
             id,
         },
     })
-
-    if (!setting) {
-        notFound() // If the setting is not found, a 404 error is thrown.
-    }
 
     return setting
 }

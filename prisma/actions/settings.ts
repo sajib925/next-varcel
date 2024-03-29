@@ -5,7 +5,10 @@ import type { Setting } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function updateOrCreateSetting(data: any, redirectUrl: string): Promise<void> {
+export async function updateOrCreateSetting(
+    data: any,
+    redirectUrl: string,
+): Promise<{ success: boolean; error?: Error }> {
     try {
         await db.setting.upsert({
             where: {
@@ -20,15 +23,14 @@ export async function updateOrCreateSetting(data: any, redirectUrl: string): Pro
                 title: 'Settings',
             },
         })
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            throw error
-        } else {
-            console.error('Unknown error:', error)
-        }
-    }
 
-    // Revalidate the post page.
-    revalidatePath(`/dashboard/settings/${redirectUrl}`)
-    redirect(`/dashboard/settings/${redirectUrl}`)
+        return { success: true }
+
+        // Revalidate the post page.
+        // revalidatePath(`/dashboard/settings/${redirectUrl}`)
+        // redirect(`/dashboard/settings/${redirectUrl}`)
+    } catch (error: unknown) {
+        console.error('Unknown error:', error)
+        return { success: false }
+    }
 }
