@@ -5,28 +5,28 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv-pooler.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
-  directUrl = "postgres://default:Wp4PdU1uKYGm@ep-dry-voice-a1ym76iv.ap-southeast-1.aws.neon.tech:5432/verceldb?sslmode=require"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_DIRECT_URL")
 }
 
-model Settings {
+model Setting {
   id           String   @id @default(cuid())
   title        String
   isActive     Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   lastUpdateBy String?
-  slideOne     Json
-  slideTwo     Json
-  slideThree   Json
-  slideFour    Json
-  slideFive    Json
-  slideSix     Json
-  slideSeven   Json
-  slideEight   Json
+  stepOne      Json?
+  stepTwo      Json?
+  stepThree    Json?
+  stepFour     Json?
+  stepFive     Json?
+  stepSix      Json?
+  stepSeven    Json?
+  stepEight    Json?
 }
 
-model Leads {
+model Lead {
   id               String   @id @default(cuid())
   name             String
   email            String
@@ -36,7 +36,7 @@ model Leads {
   createdAt        DateTime @default(now())
 }
 
-model HelpRequests {
+model HelpRequest {
   id        String   @id @default(cuid())
   phone     String
   name      String?

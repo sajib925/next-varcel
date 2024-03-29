@@ -15,6 +15,7 @@ export const SideBar = (props: Props) => {
                         <Image src={'/faviconx256.png'} alt={'getonnet'} width={25} height={25} />
                     </Link>
                 </div>
+
                 <div className="flex-1">
                     <Navbar className="grid items-start px-2 text-sm font-medium lg:px-4" />
                 </div>

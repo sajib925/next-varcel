@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from '@/components/ui/toaster'
+import StoreProvider from '@/store/provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,8 +38,12 @@ export default function RootLayout({
                     shadow="0 0 10px #2299DD,0 0 5px #2299DD"
                     showAtBottom={false}
                 />
-
-                <ClerkProvider>{children}</ClerkProvider>
+                <StoreProvider>
+                    <ClerkProvider>
+                        <main>{children}</main>
+                        <Toaster />
+                    </ClerkProvider>
+                </StoreProvider>
             </body>
         </html>
     )
