@@ -1,5 +1,5 @@
-import { ProfileForm } from "@/components/ui/profile-form";
 import { Separator } from "@/components/ui/separator";
+import { StepOne } from "@/components/ui/StepOne";
 
 export default function Settings() {
   return (
@@ -11,7 +11,8 @@ export default function Settings() {
         </p>
       </div>
       <Separator />
-      <ProfileForm />
+      <StepOne />
+      
     </div>
   )
 }

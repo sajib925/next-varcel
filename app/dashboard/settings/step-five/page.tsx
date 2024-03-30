@@ -1,4 +1,5 @@
 import { DisplayForm } from "@/components/ui/display-form";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 export default function SettingsDisplayPage() {
@@ -12,6 +13,7 @@ export default function SettingsDisplayPage() {
       </div>
       <Separator />
       <DisplayForm />
+     
     </div>
   )
 }
