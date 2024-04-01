@@ -34,6 +34,7 @@ export function Step2Form({ defaultData }: { defaultData: any }) {
         mode: 'onChange',
     })
 
+    // This function is called when the form is submitted.
     function onSubmit(data: Step1FormValues) {
         setLoading(true)
 
